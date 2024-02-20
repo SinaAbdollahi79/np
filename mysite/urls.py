@@ -1,6 +1,7 @@
 from . import views
 from django.urls import path,include
 from django.contrib import admin
+from rest_framework.documentation import include_docs_urls
 
 
 """
@@ -26,4 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/", include('mysite.api.v1.urls')),
     path("xxx/", views.PostTest.as_view(), name='post-test'),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-docs/',include_docs_urls(title='Superbook API')),
+
 ]

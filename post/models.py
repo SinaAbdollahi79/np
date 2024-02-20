@@ -4,10 +4,19 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class posttest(models.Model):
     titel = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     conted_view = models.IntegerField(default=0)
+    category = models.ManyToManyField(Category)
     status = models.BooleanField(default=False)
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -21,3 +30,6 @@ class posttest(models.Model):
     
     def get_absolute_url(self):
         return reverse('blog:blog-single', kwargs={'pid': self.id})
+    
+
+

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import posttest
+from .models import posttest, Category
 
 
 
@@ -18,7 +18,7 @@ class PosttestAdmin(admin.ModelAdmin):
 
 
 
-
+admin.site.register(Category)
 admin.site.register(posttest, PosttestAdmin)
 
 
