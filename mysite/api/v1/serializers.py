@@ -1,7 +1,9 @@
 from rest_framework import serializers
 
 from post.models import posttest, Category
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -10,15 +12,27 @@ class CategorySerializer(serializers.ModelSerializer):
         fields=['id','name']
 
 
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['first_name', 'email']
+
+
 class post_testserializers(serializers.ModelSerializer):
     category =CategorySerializer(many=True)
+    author = AuthorSerializer()
+    #author = serializers.SlugRelatedField(slug_field='email',queryset=User.objects.all())
     #category = serializers.SlugRelatedField(many=True, slug_field='name',queryset=Category.objects.all())
     class Meta:
         model=posttest
-        fields=['id', 'titel','published_date','updated_date','status','category']
+        #depth=1
+        fields=['id', 'titel','author','published_date','updated_date','status','category']
 
-    '''def to_representation(self, instance):
+    def to_representation(self, instance):
         rep = super().to_representation(instance)
-        rep['category']= CategorySerializer(instance.category).data
-        return rep'''
+        user = self.context.get('request').user
+
+        if not user.is_authenticated:
+            rep.pop('category')
+        return rep
 

@@ -11,7 +11,6 @@ router.register('category',views.CategoryViewSet , basename='category')
 urlpatterns = router.urls
 
 
-
 '''urlpatterns = [
     
     path("test/", views.PostList.as_view(), name='post-test'),

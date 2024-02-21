@@ -6,7 +6,10 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import APIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly 
 from rest_framework.generics import GenericAPIView, ListCreateAPIView,RetrieveUpdateDestroyAPIView
-
+from .permissions import IsOwnerOrReadOnly
+from .paginations import StandardResultsSetPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter , OrderingFilter
 
 
 """@api_view(['GET', 'POST'])
@@ -68,8 +71,6 @@ def post_deateil(request,id):
     queryset = posttest.objects.filter(status=True)'''
 
 
-
-
 '''class singelpost(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -103,15 +104,22 @@ def post_deateil(request,id):
 
 
 class PostModelView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     serializer_class = post_testserializers
     queryset = posttest.objects.filter(status=True)
-   
+    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
+    filterset_fields = ['category', 'author']
+    search_fields = ['titel']
+    ordering_fields = ['author__email', 'published_date']
+    pagination_class =StandardResultsSetPagination
+    
     
     
 class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+
+
     
 
