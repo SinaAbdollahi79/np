@@ -25,7 +25,7 @@ app_name = "mysite"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/", include('mysite.api.v1.urls')),
-    #path("api/v1/", include('account.urls')),
+    path("api/v1/account/", include('account.urls')),
     path("xxx/", views.PostTest.as_view(), name='post-test'),
     path('api-auth/', include('rest_framework.urls')),
     path('api-docs/',include_docs_urls(title='Superbook API')),
