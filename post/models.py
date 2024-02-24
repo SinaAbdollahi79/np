@@ -1,8 +1,8 @@
 
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 
 class Category(models.Model):
@@ -11,6 +11,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+#getting user object 
+User =get_user_model()
 
 class posttest(models.Model):
     titel = models.CharField(max_length=100)

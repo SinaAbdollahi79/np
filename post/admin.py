@@ -11,7 +11,7 @@ from .models import posttest, Category
 class PosttestAdmin(admin.ModelAdmin):
     date_hierarchy = "created_date"
     empty_value_display = ""
-    list_display = ("titel","author",  "created_date", "published_date")
+    list_display = ("titel",  "created_date", "published_date")
     list_filter = ( "created_date", "published_date")
     search_fields = ("titel", "created_date")
  
