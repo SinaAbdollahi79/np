@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'account.apps.AccountConfig',
     'django_filters',
-    'drf_yasg',
+    'drf_yasg',  
 
 ]
 

@@ -7,8 +7,8 @@ from .models import User,Profile
 class CustomUserAdmin(UserAdmin):
 
     model = User
-    list_display = ("email", 'is_staff',"is_active",)
-    list_filter = ("email",'is_staff', "is_active",)
+    list_display = ("email", 'is_staff',"is_active",'is_verified',)
+    list_filter = ("email",'is_staff', "is_active",'is_verified',)
     search_fields =("email",)
     ordering = ("email",)
   
@@ -23,7 +23,7 @@ class CustomUserAdmin(UserAdmin):
             "classes": ("wide",),
             "fields": (
                 "email", "password1", "password2", "is_staff",
-                "is_active", "groups", "user_permissions"
+                "is_active", "groups", "user_permissions",'is_verified'
             )}
         ),
     )
