@@ -1,13 +1,9 @@
-from . import views
 from django.urls import path
-from rest_framework.routers import DefaultRouter
-from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView,
 )
-
+from . import views
 
 app_name = "api-v1"
 
