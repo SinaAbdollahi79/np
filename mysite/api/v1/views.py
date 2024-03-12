@@ -8,7 +8,6 @@ from .permissions import IsOwnerOrReadOnly
 from .paginations import StandardResultsSetPagination
 
 
-
 """@api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticatedOrReadOnly ])
 def post_test(request):
