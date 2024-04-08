@@ -12,11 +12,7 @@ urlpatterns = [
     # regester
     path("registration/", views.RegistrationApiViews.as_view(), name="registration"),
     # change password
-    path(
-        "change_password/",
-        views.ChangePasswordApiViews.as_view(),
-        name="change_password",
-    ),
+    path("change_password/",views.ChangePasswordApiViews.as_view(),name="change_password",),
     # token login and logout
     path("token/login/", views.CustomObtainAuthToken.as_view(), name="token-login"),
     path("token/logout/", views.CustomDiscardAuthToken.as_view(), name="token-logout"),
